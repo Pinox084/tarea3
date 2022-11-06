@@ -1,0 +1,61 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Graphics;
+import javax.swing.*;  
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
+class Sample extends JFrame{//inheriting JFrame  
+      
+    private PanelPrincipal pp;
+    Sample(){  
+        pp= new PanelPrincipal();
+        JLabel img= new JLabel(new ImageIcon("expen.jpg"));
+        JLabel img1= new JLabel(new ImageIcon("pooh.jpg"));
+        JButton e=new JButton("COMPRAR");//create button  
+        e.setBounds(600,250,100, 30);  
+        JButton a=new JButton("COCACOLA");
+        a.setBounds(600,160,80, 20);  
+        JButton b=new JButton("SPRITE");
+        b.setBounds(600,180,80, 20);  
+        JButton c=new JButton("FANTA");
+        c.setBounds(600,200,80, 20);  
+        JButton d=new JButton("MINE");  
+        d.setBounds(600,220,80, 20);  
+        JButton r=new JButton("VUELTO");
+        r.setBounds(600,300,100, 40);
+        add(e);
+        add(r);
+        add(a);//adding button on frame 
+        add(b);
+        add(c);
+        add(d);
+        img.setBounds(300,50,400,400);
+	add(img);
+        img1.setBounds(50,50,200,400);
+	add(img1);
+        setLayout(null);
+        add(pp,BorderLayout.CENTER);
+        setSize(800,600);  
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setVisible(true);  
+    }  
+}
+class PanelPrincipal extends JPanel{
+    public PanelPrincipal(){
+        setSize(800,600); //para que se inicie con un tamaño
+        setBackground(Color.white);
+    }
+    public void paint (Graphics g){
+        super.paint(g);
+        
+    }   
+}
+
+public class Codigo2 {
+    public static void main(String[] args) {
+         new Sample();
+         new PanelPrincipal();
+         
+    }
+    
+}

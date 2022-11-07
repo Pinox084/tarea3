@@ -9,19 +9,6 @@ public class Comprador {
         Bebida botella = null;
         vuelto = 0;
         Moneda x;
-        try{
-            botella = quiosco.comprarBebida(coin, seleccion);
-            sabor = botella.beber();
-        }catch(PagoIncorrectoException e){
-            System.out.println(e.getMessage());
-            sabor = null;
-        }catch(PagoInsuficienteException e){
-            System.out.println(e.getMessage());
-            sabor = null;
-        }catch (NoHayBebidaException e){
-            System.out.println(e.getMessage());
-            sabor = null;
-        }
         do{
             x = quiosco.getVuelto();
             

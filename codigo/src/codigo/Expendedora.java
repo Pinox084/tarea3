@@ -1,18 +1,31 @@
 package codigo;
 
-public class Expendedora {
-    Deposito Coca;
-    Deposito Spritex;
-    Deposito Mine;
-    Deposito Fantax;
-    Depocoin caja;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class Expendedora extends JFrame implements ActionListener {
+    private Deposito Coca;
+    private Deposito Spritex;
+    private Deposito Mine;
+    private Deposito Fantax;
+    private Depocoin caja;
+    private Depocoin caja2;
+    private Bebida repo;
+    private Moneda insert;
     
-    int precioCoca;
-    int precioSprite;
-    int precioMine;
-    int precioFanta;
+    private int precioCoca;
+    private int precioSprite;
+    private int precioMine;
+    private int precioFanta;
+    private int posX;
+    private int posY;
+    private JButton bCoca;
     
-    
+    public void insertMoneda(Moneda coin){
+        insert = coin;
+    }
     public Expendedora(int cantidad, int precioCoca, int precioFanta , int precioSprite, int precioMineral){
         
         Coca = new Deposito();
@@ -20,6 +33,7 @@ public class Expendedora {
         Mine = new Deposito();
         Fantax = new Deposito();
         caja = new Depocoin();
+        caja2 = new Depocoin();
         
         for (int i = 0; i < cantidad; i++) {
             Coca.addBebida(new CocaCola(i));
@@ -37,66 +51,68 @@ public class Expendedora {
         this.precioFanta = precioFanta;
         this.precioSprite = precioSprite;
         this.precioMine = precioMineral;
-        
+        JButton bCoca=new JButton("COCACOLA");
     }
     
-    public Bebida comprarBebida(Moneda coin, int seleccion) throws PagoInsuficienteException, PagoIncorrectoException, NoHayBebidaException{
+    public void comprarBebida(int seleccion) throws PagoInsuficienteException, PagoIncorrectoException, NoHayBebidaException{
         
-        Bebida b = null;
+        
         switch(seleccion){
             
             default: 
-                caja.returncoin(coin);
+                caja.returncoin(insert);
                 throw new NoHayBebidaException("Seleccion Incorrecta"); 
             case 1:
                 
-                if(checkPrice(coin, precioCoca) == true){
-                    b = Coca.getBebida();
-                    if(b == null){
-                        caja.returncoin(coin);
+                if(checkPrice(insert, precioCoca) == true){
+                    repo = Coca.getBebida();
+                    if(repo == null){
+                        caja.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    llenarVuelto(coin, precioCoca);
-                    return b;
+                    llenarVuelto(insert, precioCoca);
+                    
                 }
                 
             case 2:
-                if(checkPrice(coin, precioFanta) == true){
-                    b = Fantax.getBebida();
-                    if(b == null){
-                        caja.returncoin(coin);
+                if(checkPrice(insert, precioFanta) == true){
+                    repo = Fantax.getBebida();
+                    if(repo == null){
+                        caja.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    llenarVuelto(coin, precioFanta);
-                    return b;
+                    llenarVuelto(insert, precioFanta);
+                    
                 }
                 
             case 3:
-                if(checkPrice(coin, precioSprite) == true){
-                    b = Spritex.getBebida();
-                    if(b == null){
-                        caja.returncoin(coin);
+                if(checkPrice(insert, precioSprite) == true){
+                    repo = Spritex.getBebida();
+                    if(repo == null){
+                        caja.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    llenarVuelto(coin, precioSprite);
-                    return b ;
+                    llenarVuelto(insert, precioSprite);
+                    
                 }
             
             case 4:
-                if(checkPrice(coin, precioMine) == true){
-                    b = Mine.getBebida();
-                    if(b == null){
-                        caja.returncoin(coin);
+                if(checkPrice(insert, precioMine) == true){
+                    repo = Mine.getBebida();
+                    if(repo == null){
+                        caja.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    llenarVuelto(coin, precioMine);
-                    return b;
+                    llenarVuelto(insert, precioMine);
+                    
                 }
             
                
         }
         
-        return null;
+    }
+    public Bebida getBebida(){
+        return repo;
     }
     
     public boolean checkPrice(Moneda coin, int precio) throws PagoInsuficienteException, PagoIncorrectoException {
@@ -131,4 +147,26 @@ public class Expendedora {
         
         return x;
     }
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        
+        if("CocaCola" == e.getActionCommand()){
+            
+            try{
+                comprarBebida(1);
+                
+            }catch(PagoIncorrectoException i){
+                System.out.println(i.getMessage());
+                
+            }catch(PagoInsuficienteException i){
+                System.out.println(i.getMessage());
+                
+            }catch (NoHayBebidaException i){
+                System.out.println(i.getMessage());
+                
+            }
+        
+        }
+    }
 }
+//throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

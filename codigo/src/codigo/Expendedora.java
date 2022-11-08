@@ -139,8 +139,8 @@ public class Expendedora extends JFrame implements ActionListener {
         
         for (int i = 0; i < p; i++) {
             caja.newCoin();
-            
         }
+        caja2.add(coin);
     }
     public Moneda getVuelto(){
         Moneda x = caja.getCoin();

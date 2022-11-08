@@ -1,11 +1,12 @@
 package codigo;
 public abstract class Moneda {
-    public Moneda(){}
+    public Moneda(int serie){
+        this.serie = serie;
+    }
+    public int getSerie(){
+        return serie;
+    }
     public int getValor(){
         return 0;
     }
-    public String getSerie(){
-        return this.toString();
-    }
-    
 }

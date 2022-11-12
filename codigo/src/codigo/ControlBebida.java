@@ -8,17 +8,17 @@ import javax.swing.JPanel;
 
 public class ControlBebida extends JPanel {
 
-    int selection;
+    
     BotonBebida bcoca;
     BotonBebida bsprite;
     BotonBebida bfanta;
     BotonBebida bmine;
-    BotonBebida breco;
+    
 
+    
     public ControlBebida() {
         super();
         this.setBackground(Color.yellow);
-        selection = 0;
         bcoca = new BotonBebida("CocaCola");
         bcoca.setBounds(1,1,50,50 );
         add(bcoca);

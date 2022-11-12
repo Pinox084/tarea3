@@ -5,7 +5,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-public class Expendedora extends JFrame implements ActionListener {
+public class Expendedora extends JFrame {
+
     private Deposito Coca;
     private Deposito Spritex;
     private Deposito Mine;
@@ -14,7 +15,7 @@ public class Expendedora extends JFrame implements ActionListener {
     private Depocoin caja2;
     private Bebida repo;
     private Moneda insert;
-    
+
     private int precioCoca;
     private int precioSprite;
     private int precioMine;
@@ -22,19 +23,16 @@ public class Expendedora extends JFrame implements ActionListener {
     private int posX;
     private int posY;
     private JButton bCoca;
-    
-    public void insertMoneda(Moneda coin){
-        insert = coin;
-    }
-    public Expendedora(int cantidad, int precioCoca, int precioFanta , int precioSprite, int precioMineral){
-        
+
+    public Expendedora(int cantidad, int precioCoca, int precioFanta, int precioSprite, int precioMineral) {
+
         Coca = new Deposito();
         Spritex = new Deposito();
         Mine = new Deposito();
         Fantax = new Deposito();
         caja = new Depocoin();
         caja2 = new Depocoin();
-        
+
         for (int i = 0; i < cantidad; i++) {
             Coca.addBebida(new CocaCola(i));
         }
@@ -51,122 +49,109 @@ public class Expendedora extends JFrame implements ActionListener {
         this.precioFanta = precioFanta;
         this.precioSprite = precioSprite;
         this.precioMine = precioMineral;
-        JButton bCoca=new JButton("COCACOLA");
+
     }
-    
-    public void comprarBebida(int seleccion) throws PagoInsuficienteException, PagoIncorrectoException, NoHayBebidaException{
-        
-        
-        switch(seleccion){
-            
-            default: 
-                caja.returncoin(insert);
-                throw new NoHayBebidaException("Seleccion Incorrecta"); 
+
+    public void insertMoneda(Moneda coin) {
+        insert = coin;
+        if (insert != null) {
+            System.out.println("Exito regalo");
+        }
+    }
+
+    public void comprarBebida(int seleccion) throws PagoInsuficienteException, PagoIncorrectoException, NoHayBebidaException {
+
+        switch (seleccion) {
+
+            default:
+                caja2.returncoin(insert);
+                throw new NoHayBebidaException("Seleccion Incorrecta");
             case 1:
-                
-                if(checkPrice(insert, precioCoca) == true){
+
+                if (checkPrice(insert, precioCoca) == true) {
                     repo = Coca.getBebida();
-                    if(repo == null){
-                        caja.returncoin(insert);
+                    if (repo == null) {
+                        caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
+                    System.out.println("x");
                     llenarVuelto(insert, precioCoca);
-                    
+                    caja.returncoin(insert);
+
                 }
-                
+
             case 2:
-                if(checkPrice(insert, precioFanta) == true){
+                if (checkPrice(insert, precioFanta) == true) {
                     repo = Fantax.getBebida();
-                    if(repo == null){
-                        caja.returncoin(insert);
+                    if (repo == null) {
+                        System.out.println("y");
+                        caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
                     llenarVuelto(insert, precioFanta);
-                    
+
                 }
-                
+
             case 3:
-                if(checkPrice(insert, precioSprite) == true){
+                if (checkPrice(insert, precioSprite) == true) {
                     repo = Spritex.getBebida();
-                    if(repo == null){
-                        caja.returncoin(insert);
+                    if (repo == null) {
+                        caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
                     llenarVuelto(insert, precioSprite);
-                    
+
                 }
-            
+
             case 4:
-                if(checkPrice(insert, precioMine) == true){
+                if (checkPrice(caja.getCoin(), precioMine) == true) {
                     repo = Mine.getBebida();
-                    if(repo == null){
-                        caja.returncoin(insert);
+                    if (repo == null) {
+                        caja2.returncoin(caja.getCoin());
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
                     llenarVuelto(insert, precioMine);
-                    
+
                 }
-            
-               
+
         }
-        
+
     }
-    public Bebida getBebida(){
+
+    public Bebida getBebida() {
         return repo;
     }
-    
+
     public boolean checkPrice(Moneda coin, int precio) throws PagoInsuficienteException, PagoIncorrectoException {
-        
-        if(coin == null){
-            
+
+        if (coin == null) {
             throw new PagoIncorrectoException("Moneda no Ingresada");
         }
-        if(coin.getValor() >= precio){
+        if (coin.getValor() >= precio) {
             return true;
-        }else{
-            caja.returncoin(coin);
-            
+        } else {
+            System.out.println("y");
+            caja2.returncoin(coin);
             throw new PagoInsuficienteException("Pago Insuficiente");
-            
         }
-        
+
     }
-    
-    public void llenarVuelto(Moneda coin, int eleccion){
-        
-        int p = coin.getValor()- eleccion;
-        p = p/100;
-        
+
+    public void llenarVuelto(Moneda coin, int eleccion) {
+
+        int p = coin.getValor() - eleccion;
+        p = p / 100;
+
         for (int i = 0; i < p; i++) {
-            caja.newCoin();
+            caja.newCoin(i + 100);
         }
-        caja2.add(coin);
+        caja2.returncoin(coin);
     }
-    public Moneda getVuelto(){
+
+    public Moneda getVuelto() {
         Moneda x = caja.getCoin();
-        
+
         return x;
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        if("CocaCola" == e.getActionCommand()){
-            
-            try{
-                comprarBebida(1);
-                
-            }catch(PagoIncorrectoException i){
-                System.out.println(i.getMessage());
-                
-            }catch(PagoInsuficienteException i){
-                System.out.println(i.getMessage());
-                
-            }catch (NoHayBebidaException i){
-                System.out.println(i.getMessage());
-                
-            }
-        
-        }
-    }
+
 }
-//throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

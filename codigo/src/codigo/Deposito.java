@@ -1,5 +1,7 @@
 package codigo;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Deposito {
@@ -24,5 +26,9 @@ public class Deposito {
 
         return b;
     }
-
+    public void paint(Graphics g,int x, int y){
+        for(int i=0; i<derp.size();i++){
+           derp.get(i).paint(g,(i)+10, y);
+        }
+    }
 }

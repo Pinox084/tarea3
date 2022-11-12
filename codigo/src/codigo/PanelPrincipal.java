@@ -22,8 +22,8 @@ public class PanelPrincipal extends JFrame{
         panel2 = new ControlComprador();
         add(panel, BorderLayout.CENTER);
         add(panel2, BorderLayout.CENTER);
-        panel.setBounds(0, 0, 200, 300);
-        panel2.setBounds(300, 0, 200, 300);
+        panel.setBounds(0, 0, 150, 300);
+        panel2.setBounds(300, 0, 150, 300);
         
         setLayout(null);
         setSize(800,600); 

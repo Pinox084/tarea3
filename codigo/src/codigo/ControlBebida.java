@@ -20,12 +20,17 @@ public class ControlBebida extends JPanel {
         super();
         this.setBackground(Color.yellow);
         bcoca = new BotonBebida("CocaCola");
-        bcoca.setBounds(1,1,50,50 );
-        add(bcoca);
         bsprite = new BotonBebida("Sprite");
         bfanta = new BotonBebida("Fanta");
         bmine = new BotonBebida("Mineral");
-
+        bcoca.setBounds(1,1,50,50 );
+        bsprite.setBounds(1,60,50,50);
+        bfanta.setBounds(1, 101, 50, 50);
+        bmine.setBounds(1, 151, 50, 50);
+        add(bcoca);
+        add(bsprite);
+        add(bfanta);
+        add(bmine);
     }
 
    

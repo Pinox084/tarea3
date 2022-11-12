@@ -16,16 +16,18 @@ public class ControlComprador extends JPanel {
     public ControlComprador(){
         super();
         this.setBackground(Color.blue);
-        breco = new BotonComprador("Recoger Botella");
-        breco.setBounds(301,1,50,50);
+        breco = new BotonComprador("Recoger Botella");      
         binsert = new BotonComprador("Insertar Moneda");
-        binsert.setBounds(301,61,50,50);
         bvuelto = new BotonComprador("Recoger Vuelto");
         bdarMone = new BotonComprador("Dar Moneda");
+        breco.setBounds(301,1,50,50);
+        binsert.setBounds(301,61,50,50);
         bdarMone.setBounds(301, 101, 50, 50);
+        bvuelto.setBounds(301, 151, 50, 50);
         add(breco);
         add(binsert);
         add(bdarMone);
+        add(bvuelto);
     }
     
 }
@@ -50,6 +52,9 @@ class BotonComprador extends JButton implements ActionListener{
         }
         if("Recoger Botella" == name){
             PanelPrincipal.p.cliente.recogerBebida(PanelPrincipal.p.expo.getBebida());
+        }
+        if("Recoger Vuelto" == name){
+            PanelPrincipal.p.cliente.recogerVuelto(PanelPrincipal.p.expo.getVuelto());
         }
     }
 }

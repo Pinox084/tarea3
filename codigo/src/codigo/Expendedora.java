@@ -1,7 +1,5 @@
 package codigo;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -23,6 +21,7 @@ public class Expendedora extends JFrame {
     private int posX;
     private int posY;
     private JButton bCoca;
+    private int serievuelto;
 
     public Expendedora(int cantidad, int precioCoca, int precioFanta, int precioSprite, int precioMineral) {
 
@@ -49,6 +48,7 @@ public class Expendedora extends JFrame {
         this.precioFanta = precioFanta;
         this.precioSprite = precioSprite;
         this.precioMine = precioMineral;
+        serievuelto = 0;
 
     }
 
@@ -65,6 +65,7 @@ public class Expendedora extends JFrame {
 
             default:
                 caja2.returncoin(insert);
+                insert = null;
                 throw new NoHayBebidaException("Seleccion Incorrecta");
             case 1:
 
@@ -74,44 +75,58 @@ public class Expendedora extends JFrame {
                         caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    System.out.println("x");
+                    System.out.println("Coca comprada");
                     llenarVuelto(insert, precioCoca);
                     caja.returncoin(insert);
-
+                    insert = null;
+                    break;
                 }
 
             case 2:
                 if (checkPrice(insert, precioFanta) == true) {
                     repo = Fantax.getBebida();
                     if (repo == null) {
-                        System.out.println("y");
+                        
                         caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
+                    System.out.println("Fanta comprada");
                     llenarVuelto(insert, precioFanta);
-
+                    caja.returncoin(insert);
+                    insert = null;
+                    break;
                 }
 
             case 3:
                 if (checkPrice(insert, precioSprite) == true) {
                     repo = Spritex.getBebida();
+                    
                     if (repo == null) {
                         caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
+                    
                     llenarVuelto(insert, precioSprite);
-
+                    System.out.println("Sprite comprada");
+                    caja.returncoin(insert);
+                    insert = null;
+                    break;
                 }
 
             case 4:
-                if (checkPrice(caja.getCoin(), precioMine) == true) {
+                if (checkPrice(insert, precioMine) == true) {
                     repo = Mine.getBebida();
+                    
                     if (repo == null) {
                         caja2.returncoin(caja.getCoin());
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
+                    
                     llenarVuelto(insert, precioMine);
-
+                    System.out.println("Mineral comprada");
+                    caja.returncoin(insert);
+                    insert = null;
+                    break;
                 }
 
         }
@@ -119,7 +134,9 @@ public class Expendedora extends JFrame {
     }
 
     public Bebida getBebida() {
-        return repo;
+        Bebida aux = repo;
+        repo = null;
+        return aux;
     }
 
     public boolean checkPrice(Moneda coin, int precio) throws PagoInsuficienteException, PagoIncorrectoException {
@@ -128,7 +145,9 @@ public class Expendedora extends JFrame {
             throw new PagoIncorrectoException("Moneda no Ingresada");
         }
         if (coin.getValor() >= precio) {
+            
             return true;
+            
         } else {
             System.out.println("y");
             caja2.returncoin(coin);
@@ -140,17 +159,19 @@ public class Expendedora extends JFrame {
     public void llenarVuelto(Moneda coin, int eleccion) {
 
         int p = coin.getValor() - eleccion;
+        System.out.println(p);
         p = p / 100;
-
+        
         for (int i = 0; i < p; i++) {
-            caja.newCoin(i + 100);
+            caja2.newCoin(serievuelto + 100);
+            serievuelto++;
+            System.out.println("vuelto generado X" +i);
         }
-        caja2.returncoin(coin);
+        
     }
 
     public Moneda getVuelto() {
-        Moneda x = caja.getCoin();
-
+        Moneda x = caja2.getCoin();
         return x;
     }
 

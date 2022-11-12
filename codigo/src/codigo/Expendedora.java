@@ -1,7 +1,14 @@
 package codigo;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Expendedora extends JFrame {
 
@@ -173,6 +180,17 @@ public class Expendedora extends JFrame {
     public Moneda getVuelto() {
         Moneda x = caja2.getCoin();
         return x;
+    }
+     public void paint(Graphics g, int x, int y) {
+        Coca.paint(g,x,y);
+        Fantax.paint(g,x+10,y);
+        Spritex.paint(g,x,y+50);
+        Mine.paint(g,x+10,y+50);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

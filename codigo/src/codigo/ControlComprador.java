@@ -12,22 +12,35 @@ public class ControlComprador extends JPanel {
     BotonComprador breco;
     BotonComprador binsert;
     BotonComprador bvuelto;
-    BotonComprador bdarMone;
+    BotonComprador bdar1000;
+    BotonComprador bdar100;
+    BotonComprador bdar500;
     public ControlComprador(){
         super();
         this.setBackground(Color.blue);
         breco = new BotonComprador("Recoger Botella");      
         binsert = new BotonComprador("Insertar Moneda");
         bvuelto = new BotonComprador("Recoger Vuelto");
-        bdarMone = new BotonComprador("Dar Moneda");
+        bdar1000 = new BotonComprador("Dar 1000");
+        bdar500 = new BotonComprador("Dar 500");
+        bdar100 = new BotonComprador("Dar 100");
         breco.setBounds(301,1,50,50);
         binsert.setBounds(301,61,50,50);
-        bdarMone.setBounds(301, 101, 50, 50);
+        bdar1000.setBounds(301, 101, 50, 50);
         bvuelto.setBounds(301, 151, 50, 50);
+        bdar500.setBounds(301,201,50,50);
+        bdar100.setBounds(301,251,50,50);
+        bdar1000.setBackground(Color.LIGHT_GRAY);
+        bdar500.setBackground(Color.yellow);
+        bdar100.setBackground(Color.ORANGE);
+        binsert.setBackground(Color.MAGENTA);
+        bvuelto.setBackground(Color.LIGHT_GRAY);
         add(breco);
         add(binsert);
-        add(bdarMone);
+        add(bdar1000);
         add(bvuelto);
+        add(bdar500);
+        add(bdar100);
     }
     
 }
@@ -47,8 +60,14 @@ class BotonComprador extends JButton implements ActionListener{
         if("Insertar Moneda" == name){
             PanelPrincipal.p.expo.insertMoneda(PanelPrincipal.p.cliente.darDinero());
         }
-        if("Dar Moneda" == name){
-            PanelPrincipal.p.cliente.recibirCoin();
+        if("Dar 1000" == name){
+            PanelPrincipal.p.cliente.recibirCoin(1);           
+        }
+        if("Dar 500" == name){
+            PanelPrincipal.p.cliente.recibirCoin(2);
+        }
+        if("Dar 100" == name){
+            PanelPrincipal.p.cliente.recibirCoin(3);
         }
         if("Recoger Botella" == name){
             PanelPrincipal.p.cliente.recogerBebida(PanelPrincipal.p.expo.getBebida());
@@ -56,5 +75,6 @@ class BotonComprador extends JButton implements ActionListener{
         if("Recoger Vuelto" == name){
             PanelPrincipal.p.cliente.recogerVuelto(PanelPrincipal.p.expo.getVuelto());
         }
+        repaint();
     }
 }

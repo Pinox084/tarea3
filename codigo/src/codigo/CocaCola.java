@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class CocaCola extends Bebida{
+    
     public CocaCola(int serie){
         super(serie);
     }
@@ -12,9 +13,16 @@ public class CocaCola extends Bebida{
     public String beber(){
         return super.beber()+"cocacola";
     }
-    @Override
-    public void paint(Graphics g,int x, int y){
+    public void paint(Graphics g){
+        
+        super.paint(g);
         g.setColor(Color.red);
-        g.fillRect(x,y,28,18);
+        g.fillRect(X,Y,7,18);
+        
+    }
+    public void setXY(int x, int y){        
+        X = x;
+        Y = y;
+        
     }
 }

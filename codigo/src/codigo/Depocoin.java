@@ -38,7 +38,7 @@ public class Depocoin{
         g.setColor(Color.darkGray);
         g.fillRect(x,y,300,50);
         for(int i=0; i<monedero.size();i++){
-           monedero.get(i).paint(g,(i)*10, y);
+           monedero.get(i).paint(g,x+(i*10), y);
         }
     }
 

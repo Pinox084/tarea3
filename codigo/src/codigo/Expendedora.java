@@ -3,10 +3,7 @@ package codigo;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -19,18 +16,19 @@ public class Expendedora extends JFrame {
     private Depocoin caja;
     private Depocoin caja2;
     private Bebida repo;
+    
     private Moneda insert;
 
     private int precioCoca;
     private int precioSprite;
     private int precioMine;
     private int precioFanta;
-    private int posX;
-    private int posY;
-    private JButton bCoca;
     private int serievuelto;
+    private int X;
+    private int Y;
+    
 
-    public Expendedora(int cantidad, int precioCoca, int precioFanta, int precioSprite, int precioMineral) {
+    public Expendedora(int cantidad, int precioCoca, int precioFanta, int precioSprite, int precioMineral, int x, int y) {
 
         Coca = new Deposito();
         Spritex = new Deposito();
@@ -39,17 +37,23 @@ public class Expendedora extends JFrame {
         caja = new Depocoin();
         caja2 = new Depocoin();
 
-        for (int i = 0; i < cantidad; i++) {
+        for (int i = 0; i < cantidad; i++) { 
             Coca.addBebida(new CocaCola(i));
+            Coca.setXY(x,y);
+            
         }
         for (int i = 0; i < cantidad; i++) {
             Spritex.addBebida(new Sprite(i));
+            Spritex.setXY(x, y+100);
+            
         }
         for (int i = 0; i < cantidad; i++) {
             Mine.addBebida(new Mineral(i));
+            Mine.setXY(x, y+150);
         }
         for (int i = 0; i < cantidad; i++) {
             Fantax.addBebida(new Fanta(i));
+            Fantax.setXY(x, y+50);
         }
         this.precioCoca = precioCoca;
         this.precioFanta = precioFanta;
@@ -77,7 +81,8 @@ public class Expendedora extends JFrame {
             case 1:
 
                 if (checkPrice(insert, precioCoca) == true) {
-                    repo = Coca.getBebida();
+                    repo = (CocaCola) Coca.getBebida();
+
                     if (repo == null) {
                         caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
@@ -86,12 +91,14 @@ public class Expendedora extends JFrame {
                     llenarVuelto(insert, precioCoca);
                     caja.returncoin(insert);
                     insert = null;
+                    repo.setXY(700,500);
+                    
                     break;
                 }
 
             case 2:
                 if (checkPrice(insert, precioFanta) == true) {
-                    repo = Fantax.getBebida();
+                    repo = (Fanta) Fantax.getBebida();
                     if (repo == null) {
                         
                         caja2.returncoin(insert);
@@ -106,7 +113,7 @@ public class Expendedora extends JFrame {
 
             case 3:
                 if (checkPrice(insert, precioSprite) == true) {
-                    repo = Spritex.getBebida();
+                    repo = (Sprite) Spritex.getBebida();
                     
                     if (repo == null) {
                         caja2.returncoin(insert);
@@ -122,7 +129,7 @@ public class Expendedora extends JFrame {
 
             case 4:
                 if (checkPrice(insert, precioMine) == true) {
-                    repo = Mine.getBebida();
+                    repo = (Mineral) Mine.getBebida();
                     
                     if (repo == null) {
                         caja2.returncoin(caja.getCoin());
@@ -137,7 +144,7 @@ public class Expendedora extends JFrame {
                 }
 
         }
-
+        repaint();
     }
 
     public Bebida getBebida() {
@@ -181,16 +188,24 @@ public class Expendedora extends JFrame {
         Moneda x = caja2.getCoin();
         return x;
     }
-     public void paint(Graphics g, int x, int y) {
-        Coca.paint(g,x,y);
-        Fantax.paint(g,x+10,y);
-        Spritex.paint(g,x,y+50);
-        Mine.paint(g,x+10,y+50);
+     public void paint(Graphics g) {
+        
+        Coca.paint(g);
+        Fantax.paint(g);
+        Spritex.paint(g);
+        Mine.paint(g);
+        
+        Bebida aux = repo;
+        
+        if( repo != null){
+            System.out.println("Mensaje" + repo.getXY());
+            repo.paint(g);
+            
+        }
+        System.out.println("Estoy aqui 1");
+        
+        //caja2.paint(g, x+10, y+600);
+        
+        
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }

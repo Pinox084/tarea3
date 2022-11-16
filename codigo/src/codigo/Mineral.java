@@ -6,6 +6,7 @@ import java.awt.Graphics;
 
 
 public class Mineral extends Bebida{
+    
     public Mineral(int serie){
         super(serie);
     }
@@ -13,9 +14,15 @@ public class Mineral extends Bebida{
     public String beber(){
         return super.beber()+"agua mineral";
     }
-    @Override
-    public void paint(Graphics g,int x, int y){
-        g.setColor(Color.blue);
-        g.fillRect(x,y,28,18);
+    public void paint(Graphics g){
+        super.paint(g);
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(X,Y,7,18);
+        
+    }
+    public void setXY(int x, int y){        
+        X = x;
+        Y = y;
+        
     }
 }

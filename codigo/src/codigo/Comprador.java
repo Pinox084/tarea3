@@ -1,5 +1,7 @@
 package codigo;
 
+import java.awt.Graphics;
+
 public class Comprador {
 
     private int vuelto;
@@ -11,6 +13,7 @@ public class Comprador {
     public Comprador() {
         bolsillo = new Depocoin();
         bolsa = new Deposito();
+        bolsa.setXY(600, 200);
         vuelto = 0;
         t = 1000 + 200;
 
@@ -20,6 +23,7 @@ public class Comprador {
         bolsa.addBebida(mia);
         if (mia != null) {
             System.out.println("Exito recoger bebida");
+            mia.setXY(500, 500);
         } else {
             System.out.println("No Hay Bebida");
         }
@@ -37,11 +41,23 @@ public class Comprador {
 
     }
 
-    public void recibirCoin() {
+    public void recibirCoin(int n) {
         t = t + 1;
-        bolsillo.returncoin(new Moneda1000(t)); //regalar moneda a comprador
-        System.out.println("success");
-
+        switch(n){
+                case 1:
+                    bolsillo.returncoin(new Moneda1000(t)); //regalar moneda a comprador
+                    System.out.println("success 1000");
+                    break;
+                    
+                case 2:
+                    bolsillo.returncoin(new Moneda500(t)); //regalar moneda a comprador
+                    System.out.println("success 500");
+                    break;
+                case 3:
+                    bolsillo.returncoin(new Moneda100(t)); //regalar moneda a comprador
+                    System.out.println("success 100");
+                    break;
+        }
     }
 
     public String getSabor() {
@@ -50,5 +66,9 @@ public class Comprador {
 
     public int cuantoVuelto() {
         return vuelto;
+    }
+    public void paint(Graphics g, int x, int y){
+        bolsillo.paint(g, x, y);
+        bolsa.paint(g);
     }
 }

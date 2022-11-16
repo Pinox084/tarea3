@@ -27,10 +27,14 @@ public class ControlBebida extends JPanel {
         bsprite.setBounds(1,60,50,50);
         bfanta.setBounds(1, 101, 50, 50);
         bmine.setBounds(1, 151, 50, 50);
+        bcoca.setBackground(Color.red);
+        bsprite.setBackground(Color.green);
+        bfanta.setBackground(Color.orange);
         add(bcoca);
         add(bsprite);
         add(bfanta);
         add(bmine);
+        
     }
 
    
@@ -65,11 +69,13 @@ class BotonBebida extends JButton implements ActionListener{
                 System.out.println(x.getMessage());
 
             }
+            
 
         }
         if ("Fanta" == name) {
             try {
                 PanelPrincipal.p.expo.comprarBebida(2);
+                
 
             } catch (PagoIncorrectoException x) {
                 System.out.println(x.getMessage());
@@ -81,6 +87,8 @@ class BotonBebida extends JButton implements ActionListener{
                 System.out.println(x.getMessage());
 
             }
+            
+            
         }
         if ("Sprite" == name) {
             try {
@@ -96,6 +104,8 @@ class BotonBebida extends JButton implements ActionListener{
                 System.out.println(x.getMessage());
 
             }
+            
+            
         }
         if ("Mineral" == name) {
             try {
@@ -111,7 +121,8 @@ class BotonBebida extends JButton implements ActionListener{
                 System.out.println(x.getMessage());
 
             }
+            
         }
-
+        repaint();
     }
 }

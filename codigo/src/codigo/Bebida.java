@@ -5,6 +5,11 @@ import java.awt.Graphics;
 
 public abstract class Bebida{
     private int serie;
+    protected int X;
+    protected int Y;
+    
+    
+
     public Bebida(int serie){
         this.serie = serie;
     }
@@ -14,8 +19,21 @@ public abstract class Bebida{
     public String beber(){
         return "sabor: ";
     }
-    public void paint(Graphics g, int x, int y) {
+    public void paint(Graphics g) {
         g.setColor(Color.black);
-        g.fillRect(x,y,30,20);
+        g.fillRect(X,Y,10,20);
+        
+        
     }
+    public void setXY(int x, int y){
+        X = x;
+        Y = y;
+        
+        
+    }
+    public String getXY(){
+        return "POsicion" + X + Y;
+    }
+   
+
 }

@@ -20,10 +20,11 @@ public class Comprador {
     }
 
     public void recogerBebida(Bebida mia) {
-        bolsa.addBebida(mia);
+        
         if (mia != null) {
             System.out.println("Exito recoger bebida");
-            mia.setXY(500, 500);
+            mia.setXY(600, 500);
+            bolsa.addBebida(mia);
         } else {
             System.out.println("No Hay Bebida");
         }
@@ -67,8 +68,8 @@ public class Comprador {
     public int cuantoVuelto() {
         return vuelto;
     }
-    public void paint(Graphics g, int x, int y){
-        bolsillo.paint(g, x, y);
+    public void paint(Graphics g){
+        bolsillo.paint(g);
         bolsa.paint(g);
     }
 }

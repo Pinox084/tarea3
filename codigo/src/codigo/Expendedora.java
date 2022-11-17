@@ -36,24 +36,27 @@ public class Expendedora extends JFrame {
         Fantax = new Deposito();
         caja = new Depocoin();
         caja2 = new Depocoin();
-
+        Coca.setXY(x,y);
+        Spritex.setXY(x, y+100);
+        Mine.setXY(x, y+150);
+        Fantax.setXY(x, y+50);
         for (int i = 0; i < cantidad; i++) { 
             Coca.addBebida(new CocaCola(i));
-            Coca.setXY(x,y);
+            
             
         }
         for (int i = 0; i < cantidad; i++) {
             Spritex.addBebida(new Sprite(i));
-            Spritex.setXY(x, y+100);
+            
             
         }
         for (int i = 0; i < cantidad; i++) {
             Mine.addBebida(new Mineral(i));
-            Mine.setXY(x, y+150);
+            
         }
         for (int i = 0; i < cantidad; i++) {
             Fantax.addBebida(new Fanta(i));
-            Fantax.setXY(x, y+50);
+            
         }
         this.precioCoca = precioCoca;
         this.precioFanta = precioFanta;
@@ -91,7 +94,7 @@ public class Expendedora extends JFrame {
                     llenarVuelto(insert, precioCoca);
                     caja.returncoin(insert);
                     insert = null;
-                    repo.setXY(700,500);
+                    repo.setXY(300,470);
                     
                     break;
                 }
@@ -108,6 +111,7 @@ public class Expendedora extends JFrame {
                     llenarVuelto(insert, precioFanta);
                     caja.returncoin(insert);
                     insert = null;
+                    repo.setXY(700,500);
                     break;
                 }
 
@@ -124,6 +128,7 @@ public class Expendedora extends JFrame {
                     System.out.println("Sprite comprada");
                     caja.returncoin(insert);
                     insert = null;
+                    repo.setXY(700,500);
                     break;
                 }
 
@@ -140,6 +145,7 @@ public class Expendedora extends JFrame {
                     System.out.println("Mineral comprada");
                     caja.returncoin(insert);
                     insert = null;
+                    repo.setXY(700,500);
                     break;
                 }
 
@@ -198,12 +204,13 @@ public class Expendedora extends JFrame {
         Bebida aux = repo;
         
         if( repo != null){
-            System.out.println("Mensaje" + repo.getXY());
+            g.setColor(Color.LIGHT_GRAY);
+            g.fillRect(236, 468, 132, 30);
             repo.paint(g);
             
         }
-        System.out.println("Estoy aqui 1");
         
+        //repo.setXY(700,500); posible inicio de botellas bolsa
         //caja2.paint(g, x+10, y+600);
         
         

@@ -123,6 +123,6 @@ class BotonBebida extends JButton implements ActionListener{
             }
             
         }
-        repaint();
+        PanelPrincipal.p.repaint();
     }
 }

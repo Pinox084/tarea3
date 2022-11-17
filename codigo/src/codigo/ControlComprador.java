@@ -75,6 +75,6 @@ class BotonComprador extends JButton implements ActionListener{
         if("Recoger Vuelto" == name){
             PanelPrincipal.p.cliente.recogerVuelto(PanelPrincipal.p.expo.getVuelto());
         }
-        repaint();
+        PanelPrincipal.p.repaint();
     }
 }

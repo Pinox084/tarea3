@@ -18,8 +18,10 @@ public class PanelPrincipal extends JFrame{
     private ControlComprador panel2;
     private JLabel expendedora;
     
+    
     public PanelPrincipal(){
         super();
+        
         p = this;
         ImageIcon img = new ImageIcon("expendedora.jpg");
         JLabel imagen = new JLabel();
@@ -30,16 +32,21 @@ public class PanelPrincipal extends JFrame{
         this.setTitle("SIMULADOR EXPENDEDORA");
         expo = new Expendedora(5,500,600,600,500,250,250);
         cliente = new Comprador();
+        ImageIcon img2 = new ImageIcon("pooh.jpg");
+        JLabel pooh = new JLabel();
+        pooh.setBounds(500, 200, 200, 300);
+        pooh.setIcon(new ImageIcon(img2.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH)));
+        add(pooh);
         panel = new ControlBebida();
         panel2 = new ControlComprador();
         panel.setBounds(0, 0, 150, 150);
         panel2.setBounds(840, 0, 150, 200);
         add(panel, BorderLayout.CENTER);
         add(panel2, BorderLayout.CENTER);
-        
         setLayout(null);
-        setSize(1000,600); 
         setBackground(Color.white);
+        setSize(1000,600); 
+        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
         
@@ -47,6 +54,7 @@ public class PanelPrincipal extends JFrame{
     }
     
     public void paint(Graphics g){
+        
         super.paint(g);
         expo.paint(g);
         

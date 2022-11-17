@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 public abstract class Moneda extends JPanel{
     private int serie;
     private Graphics g;
+    private int X;
+    private int Y;
     public Moneda(int serie){
         this.serie = serie;
     }
@@ -17,9 +19,13 @@ public abstract class Moneda extends JPanel{
     public int getValor(){
         return 0;
     }
-    public void paint(Graphics g,int x, int y){
-        g.setColor(Color.yellow);
-        g.fillOval(x,y,30,30);
+    public void paint(Graphics g){
+        g.setColor(Color.black);
+        g.fillOval(X,Y,50,50);
+    }
+    public void setXY(int x, int y){
+        X = x;
+        Y = y;
         
     }
 }

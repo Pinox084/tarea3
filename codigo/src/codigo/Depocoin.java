@@ -34,13 +34,18 @@ public class Depocoin{
         Moneda x = monedero.remove(monedero.size()-1);
         return x;
     }
-    public void paint(Graphics g,int x, int y){
+    public void paint(Graphics g){
         g.setColor(Color.darkGray);
-        g.fillRect(x,y,300,50);
+        g.fillRect(X,Y,300,50);
         for(int i=0; i<monedero.size();i++){
-           monedero.get(i).paint(g,x+(i*10), y);
+           monedero.get(i).paint(g,X+(i*10), Y);
         }
     }
+    public void setXY(int x, int y){
+        X=x;
+        Y=y;
+    }
+
 
 }
 

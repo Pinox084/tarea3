@@ -21,8 +21,6 @@ public class Expendedora extends JFrame {
     private int precioMine;
     private int precioFanta;
     private int serievuelto;
-    private int X;
-    private int Y;
     private int limite;
 
     public Expendedora(int cantidad, int precioCoca, int precioFanta, int precioSprite, int precioMineral, int x, int y) {
@@ -224,20 +222,20 @@ public class Expendedora extends JFrame {
         }
 
         g.setColor(Color.green);
-        g.fillRect(X+150,Y+250,50,25);
+        g.fillRect(150,250,50,25);
         g.setColor(Color.black);
-        g.drawString(""+precioCoca, X+150, Y+260);
+        g.drawString(""+precioCoca, 150, 260);
         g.setColor(Color.green);
-        g.fillRect(X+150,Y+300,50,25);
+        g.fillRect(150,300,50,25);
         g.setColor(Color.black);
-        g.drawString(""+precioFanta, X+150, Y+310);
+        g.drawString(""+precioFanta, 150, 310);
         g.setColor(Color.green);
-        g.fillRect(X+150,Y+350,50,25);
+        g.fillRect(150,350,50,25);
         g.setColor(Color.black);
-        g.drawString(""+precioSprite, X+150, Y+360);
+        g.drawString(""+precioSprite, 150, 360);
         g.setColor(Color.green);
-        g.fillRect(X+150,Y+400,50,25);
+        g.fillRect(150,400,50,25);
         g.setColor(Color.black);
-        g.drawString(""+precioMine, X+150, Y+410);
+        g.drawString(""+precioMine, 150, 410);
     }
 }

@@ -223,6 +223,21 @@ public class Expendedora extends JFrame {
 
         }
 
-        //repo.setXY(700,500); posible inicio de botellas bolsa
+        g.setColor(Color.green);
+        g.fillRect(X+150,Y+250,50,25);
+        g.setColor(Color.black);
+        g.drawString(""+precioCoca, X+150, Y+260);
+        g.setColor(Color.green);
+        g.fillRect(X+150,Y+300,50,25);
+        g.setColor(Color.black);
+        g.drawString(""+precioFanta, X+150, Y+310);
+        g.setColor(Color.green);
+        g.fillRect(X+150,Y+350,50,25);
+        g.setColor(Color.black);
+        g.drawString(""+precioSprite, X+150, Y+360);
+        g.setColor(Color.green);
+        g.fillRect(X+150,Y+400,50,25);
+        g.setColor(Color.black);
+        g.drawString(""+precioMine, X+150, Y+410);
     }
 }

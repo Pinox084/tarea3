@@ -3,9 +3,6 @@ package codigo;
 import java.awt.Graphics;
 
 public class Comprador {
-
-    private int vuelto;
-    private String sabor;
     private Depocoin bolsillo;
     private Deposito bolsa;
     private int t;
@@ -15,7 +12,6 @@ public class Comprador {
         bolsa = new Deposito();
         bolsa.setXY(600, 200);
         bolsillo.setXY(720,500);
-        vuelto = 0;
         t = 1000 + 200;
 
     }
@@ -72,9 +68,7 @@ public class Comprador {
         return bolsa.getBebida();
     }
 
-    public int cuantoVuelto() {
-        return vuelto;
-    }
+
     
     public void paint(Graphics g){
         bolsillo.paint(g);

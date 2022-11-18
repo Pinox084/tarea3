@@ -10,6 +10,8 @@ public class Depocoin{
 
     private ArrayList<Moneda> monedero;
     private int t;
+    private int X;
+    private int Y;
 
     public Depocoin() {
 
@@ -19,13 +21,19 @@ public class Depocoin{
 
    
     public void returncoin(Moneda coin){
+        int aux = monedero.size();
+        coin.setXY(X+(aux*10), Y);
         monedero.add(coin); //recibe una moneda ya creada
+        
     }
     public Moneda getMoneda(){
         return monedero.get(monedero.size()-1);
     }
     public void newCoin(int i) {
-        monedero.add(new Moneda100(i)); //PARA MONEDAS DE CIEN DEL VUELTO
+        Moneda100 chaucha = new Moneda100(i);
+        int aux = monedero.size();
+        chaucha.setXY(X+(aux*10), Y);
+        monedero.add(chaucha); //PARA MONEDAS DE CIEN DEL VUELTO
     }
     public Moneda getCoin() {
         if (monedero.size() == 0) {
@@ -38,7 +46,7 @@ public class Depocoin{
         g.setColor(Color.darkGray);
         g.fillRect(X,Y,300,50);
         for(int i=0; i<monedero.size();i++){
-           monedero.get(i).paint(g,X+(i*10), Y);
+           monedero.get(i).paint(g);
         }
     }
     public void setXY(int x, int y){

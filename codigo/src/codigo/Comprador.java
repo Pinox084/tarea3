@@ -14,6 +14,7 @@ public class Comprador {
         bolsillo = new Depocoin();
         bolsa = new Deposito();
         bolsa.setXY(600, 200);
+        bolsillo.setXY(720,500);
         vuelto = 0;
         t = 1000 + 200;
 

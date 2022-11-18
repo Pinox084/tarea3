@@ -7,9 +7,8 @@ import javax.swing.JPanel;
 
 public abstract class Moneda extends JPanel{
     private int serie;
-    private Graphics g;
-    private int X;
-    private int Y;
+    protected int X;
+    protected int Y;
     public Moneda(int serie){
         this.serie = serie;
     }

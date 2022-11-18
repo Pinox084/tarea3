@@ -56,6 +56,7 @@ public class PanelPrincipal extends JFrame{
     public void paint(Graphics g){
         
         super.paint(g);
+        cliente.paint(g);
         expo.paint(g);
         
     }

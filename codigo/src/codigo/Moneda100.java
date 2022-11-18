@@ -4,8 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Moneda100 extends Moneda{
-    private int X;
-    private int Y;
+
     public Moneda100(int serie){
         super(serie);
     }

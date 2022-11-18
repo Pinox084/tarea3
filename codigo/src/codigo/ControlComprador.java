@@ -15,6 +15,7 @@ public class ControlComprador extends JPanel {
     BotonComprador bdar1000;
     BotonComprador bdar100;
     BotonComprador bdar500;
+    BotonComprador bbeber;
     public ControlComprador(){
         super();
         this.setBackground(Color.blue);
@@ -24,12 +25,15 @@ public class ControlComprador extends JPanel {
         bdar1000 = new BotonComprador("Dar 1000");
         bdar500 = new BotonComprador("Dar 500");
         bdar100 = new BotonComprador("Dar 100");
+        bbeber = new BotonComprador("Beber");
+       
         breco.setBounds(301,1,50,50);
         binsert.setBounds(301,61,50,50);
         bdar1000.setBounds(301, 101, 50, 50);
         bvuelto.setBounds(301, 151, 50, 50);
         bdar500.setBounds(301,201,50,50);
         bdar100.setBounds(301,251,50,50);
+        bbeber.setBounds(301,301,50,50);
         bdar1000.setBackground(Color.LIGHT_GRAY);
         bdar500.setBackground(Color.yellow);
         bdar100.setBackground(Color.ORANGE);
@@ -41,6 +45,7 @@ public class ControlComprador extends JPanel {
         add(bvuelto);
         add(bdar500);
         add(bdar100);
+        add(bbeber);
     }
     
 }
@@ -74,6 +79,9 @@ class BotonComprador extends JButton implements ActionListener{
         }
         if("Recoger Vuelto" == name){
             PanelPrincipal.p.cliente.recogerVuelto(PanelPrincipal.p.expo.getVuelto());
+        }
+        if("Beber" == name){
+            PanelPrincipal.p.cliente.getSabor();
         }
         PanelPrincipal.p.repaint();
     }

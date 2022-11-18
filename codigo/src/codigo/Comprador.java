@@ -62,13 +62,20 @@ public class Comprador {
         }
     }
 
-    public String getSabor() {
-        return sabor;
+    public void getSabor() {
+        Bebida aux = tomarBebida();
+        String frase = aux.beber();
+        System.out.println(frase);
+        aux = null;
+    }
+    public Bebida tomarBebida(){
+        return bolsa.getBebida();
     }
 
     public int cuantoVuelto() {
         return vuelto;
     }
+    
     public void paint(Graphics g){
         bolsillo.paint(g);
         bolsa.paint(g);

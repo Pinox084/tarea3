@@ -29,7 +29,7 @@ public class PanelPrincipal extends JFrame{
         expendedora = imagen;
         add(expendedora);
         this.setTitle("SIMULADOR EXPENDEDORA");
-        expo = new Expendedora(5,500,600,600,500,250,250);
+        expo = new Expendedora(5,1000,500,600,100,250,250);
         cliente = new Comprador();
         ImageIcon img2 = new ImageIcon("pooh.jpg");
         JLabel pooh = new JLabel();
@@ -39,7 +39,7 @@ public class PanelPrincipal extends JFrame{
         panel = new ControlBebida();
         panel2 = new ControlComprador();
         panel.setBounds(0, 0, 150, 150);
-        panel2.setBounds(840, 0, 150, 200);
+        panel2.setBounds(840, 0, 150, 250);
         add(panel, BorderLayout.CENTER);
         add(panel2, BorderLayout.CENTER);
         setLayout(null);

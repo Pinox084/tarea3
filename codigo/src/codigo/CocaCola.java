@@ -11,7 +11,7 @@ public class CocaCola extends Bebida{
     
     @Override
     public String beber(){
-        return super.beber()+"cocacola";
+        return super.beber()+"Rica Cocacola";
     }
     public void paint(Graphics g){
         

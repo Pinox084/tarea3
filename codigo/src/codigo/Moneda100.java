@@ -17,7 +17,8 @@ public class Moneda100 extends Moneda{
         super.paint(g);
         g.setColor(Color.orange);
         g.fillOval(X,Y,48,48);
-        
+        g.setColor(Color.black);
+        g.drawString(""+this.getValor(), X+10, Y+20);
     }
     public void setXY(int x, int y){
         X = x;

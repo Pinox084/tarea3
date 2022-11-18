@@ -13,7 +13,7 @@ public class ControlBebida extends JPanel {
     BotonBebida bsprite;
     BotonBebida bfanta;
     BotonBebida bmine;
-    
+    BotonBebida brestock;
 
     
     public ControlBebida() {
@@ -23,17 +23,21 @@ public class ControlBebida extends JPanel {
         bsprite = new BotonBebida("Sprite");
         bfanta = new BotonBebida("Fanta");
         bmine = new BotonBebida("Mineral");
+        brestock = new BotonBebida("Rellenar Stock");
         bcoca.setBounds(1,1,50,50 );
         bsprite.setBounds(1,60,50,50);
         bfanta.setBounds(1, 101, 50, 50);
         bmine.setBounds(1, 151, 50, 50);
+        brestock.setBounds(1, 201, 50, 50);
         bcoca.setBackground(Color.red);
         bsprite.setBackground(Color.green);
         bfanta.setBackground(Color.orange);
+        brestock.setBackground(Color.GRAY);
         add(bcoca);
         add(bsprite);
         add(bfanta);
         add(bmine);
+        add(brestock);
         
     }
 
@@ -123,6 +127,11 @@ class BotonBebida extends JButton implements ActionListener{
             }
             
         }
+        if("Rellenar Stock" == name){
+            PanelPrincipal.p.expo.RellenarStock();
+        }
+        
+        
         PanelPrincipal.p.repaint();
     }
 }

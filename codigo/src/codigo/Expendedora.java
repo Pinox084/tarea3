@@ -2,10 +2,7 @@ package codigo;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class Expendedora extends JFrame {
 
@@ -26,37 +23,36 @@ public class Expendedora extends JFrame {
     private int serievuelto;
     private int X;
     private int Y;
-    
+    private int limite;
 
     public Expendedora(int cantidad, int precioCoca, int precioFanta, int precioSprite, int precioMineral, int x, int y) {
-
+        limite = cantidad;
         Coca = new Deposito();
         Spritex = new Deposito();
         Mine = new Deposito();
         Fantax = new Deposito();
         caja = new Depocoin();
         caja2 = new Depocoin();
-        Coca.setXY(x,y);
-        Spritex.setXY(x, y+100);
-        Mine.setXY(x, y+150);
-        Fantax.setXY(x, y+50);
-        for (int i = 0; i < cantidad; i++) { 
+        Coca.setXY(x, y);
+        Spritex.setXY(x, y + 100);
+        Mine.setXY(x, y + 150);
+        Fantax.setXY(x, y + 50);
+        caja2.setXY(190, 540);
+        for (int i = 0; i < cantidad; i++) {
             Coca.addBebida(new CocaCola(i));
-            
-            
+
         }
         for (int i = 0; i < cantidad; i++) {
             Spritex.addBebida(new Sprite(i));
-            
-            
+
         }
         for (int i = 0; i < cantidad; i++) {
             Mine.addBebida(new Mineral(i));
-            
+
         }
         for (int i = 0; i < cantidad; i++) {
             Fantax.addBebida(new Fanta(i));
-            
+
         }
         this.precioCoca = precioCoca;
         this.precioFanta = precioFanta;
@@ -94,8 +90,8 @@ public class Expendedora extends JFrame {
                     llenarVuelto(insert, precioCoca);
                     caja.returncoin(insert);
                     insert = null;
-                    repo.setXY(300,470);
-                    
+                    repo.setXY(300, 470);
+
                     break;
                 }
 
@@ -103,7 +99,7 @@ public class Expendedora extends JFrame {
                 if (checkPrice(insert, precioFanta) == true) {
                     repo = (Fanta) Fantax.getBebida();
                     if (repo == null) {
-                        
+
                         caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
@@ -111,46 +107,46 @@ public class Expendedora extends JFrame {
                     llenarVuelto(insert, precioFanta);
                     caja.returncoin(insert);
                     insert = null;
-                    repo.setXY(700,500);
+                    repo.setXY(300, 470);
                     break;
                 }
 
             case 3:
                 if (checkPrice(insert, precioSprite) == true) {
                     repo = (Sprite) Spritex.getBebida();
-                    
+
                     if (repo == null) {
                         caja2.returncoin(insert);
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    
+
                     llenarVuelto(insert, precioSprite);
                     System.out.println("Sprite comprada");
                     caja.returncoin(insert);
                     insert = null;
-                    repo.setXY(700,500);
+                    repo.setXY(300, 470);
                     break;
                 }
 
             case 4:
                 if (checkPrice(insert, precioMine) == true) {
                     repo = (Mineral) Mine.getBebida();
-                    
+
                     if (repo == null) {
                         caja2.returncoin(caja.getCoin());
                         throw new NoHayBebidaException("No Disponible en este momento");
                     }
-                    
+
                     llenarVuelto(insert, precioMine);
                     System.out.println("Mineral comprada");
                     caja.returncoin(insert);
                     insert = null;
-                    repo.setXY(700,500);
+                    repo.setXY(300, 470);
                     break;
                 }
 
         }
-        repaint();
+
     }
 
     public Bebida getBebida() {
@@ -159,15 +155,31 @@ public class Expendedora extends JFrame {
         return aux;
     }
 
+    public void RellenarStock() {
+        if(Coca.getSize() != limite){
+            Coca.Restock(1);
+        }
+        if(Fantax.getSize() != limite){
+            Fantax.Restock(2);
+        }
+        if(Spritex.getSize() != limite){
+            Spritex.Restock(3);
+        }
+        if(Mine.getSize() != limite){
+            Mine.Restock(4);
+        }
+        
+    }
+
     public boolean checkPrice(Moneda coin, int precio) throws PagoInsuficienteException, PagoIncorrectoException {
 
         if (coin == null) {
             throw new PagoIncorrectoException("Moneda no Ingresada");
         }
         if (coin.getValor() >= precio) {
-            
+
             return true;
-            
+
         } else {
             System.out.println("y");
             caja2.returncoin(coin);
@@ -181,38 +193,36 @@ public class Expendedora extends JFrame {
         int p = coin.getValor() - eleccion;
         System.out.println(p);
         p = p / 100;
-        
+
         for (int i = 0; i < p; i++) {
             caja2.newCoin(serievuelto + 100);
             serievuelto++;
-            System.out.println("vuelto generado X" +i);
+            System.out.println("vuelto generado X" + i);
         }
-        
+
     }
 
     public Moneda getVuelto() {
         Moneda x = caja2.getCoin();
         return x;
     }
-     public void paint(Graphics g) {
-        
+
+    public void paint(Graphics g) {
+
         Coca.paint(g);
         Fantax.paint(g);
         Spritex.paint(g);
         Mine.paint(g);
-        
+        caja2.paint(g);
         Bebida aux = repo;
-        
-        if( repo != null){
+
+        if (repo != null) {
             g.setColor(Color.LIGHT_GRAY);
             g.fillRect(236, 468, 132, 30);
             repo.paint(g);
-            
+
         }
-        
+
         //repo.setXY(700,500); posible inicio de botellas bolsa
-        //caja2.paint(g, x+10, y+600);
-        
-        
     }
 }

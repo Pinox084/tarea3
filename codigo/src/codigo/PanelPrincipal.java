@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -45,7 +44,7 @@ public class PanelPrincipal extends JFrame{
         add(panel2, BorderLayout.CENTER);
         setLayout(null);
         setBackground(Color.white);
-        setSize(1000,600); 
+        setSize(1000,800); 
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);

@@ -59,12 +59,16 @@ public class Comprador {
     }
 
     public void getSabor() {
-        Bebida aux = tomarBebida();
-        String frase = aux.beber();
-        System.out.println(frase);
-        aux = null;
+        if(bolsa.getSize() != 0){
+            Bebida aux = tomarBebida();
+            String frase = aux.beber();
+            System.out.println(frase);
+            aux = null;
+        }
+        
     }
     public Bebida tomarBebida(){
+       
         return bolsa.getBebida();
     }
 
